@@ -18,36 +18,30 @@ namespace JobsCatalog.Seeder
         }
         public Task SeedData()
         {
-           System.Console.WriteLine(SeedJobs().Description);
-           
-           System.Console.WriteLine(SeedJobs().Benefits);
-           
-           System.Console.WriteLine("Running");
+           System.Console.WriteLine("Seeding Task Started!");
             if (!_context.Jobs.Any())
             {
                int i = 0;
-               while(i<10000)
+               while(i<100000)
                {
                     Job j = new Job();
                     j = SeedJobs();
 
                     _context.Jobs.Add(j);
                     _context.SaveChanges();
+                    
                     i++;
+                    System.Console.WriteLine("Seeding Job Count " + i);
 
                 };
              }
-              
-            
-            return Task.CompletedTask;
-        }
+             return Task.CompletedTask;
+             }
         
         public Job SeedJobs()
         {
            var lorem = new Lorem(locale: "en");
-            
-            var testjobs = new Faker<Job>()
-            .CustomInstantiator(f => new Job())
+            var testjobs = new Faker<Job>().CustomInstantiator(f => new Job())
             
            .RuleFor(u => u.City, f => f.Address.City())
            .RuleFor(u => u.MaxSalary, f => f.Random.Number(1000, 200000))
