@@ -1,2 +1,2 @@
-# Faker-FluentDataGenerator
-c# library to generate fake data
+#Implementation of Nuget Package Bogus to generate Fake Data
+
